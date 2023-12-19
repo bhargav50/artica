@@ -1,0 +1,42 @@
+
+version: '2.2'
+
+services:
+  cube:
+    image: cubejs/cube:latest
+    ports:
+      - 4000:4000  # Cube.js API and Developer Playground
+      - 3000:3000  # Dashboard app, if created
+    environment:
+      - CUBEJS_DB_TYPE=postgres
+      - CUBEJS_DB_HOST=db
+      - CUBEJS_DB_USER=postgres
+      - CUBEJS_DB_PASS=password
+      - CUBEJS_DB_NAME=uber
+
+      - CUBEJS_API_SECRET=SECRET
+      - CUBEJS_DEV_MODE=true
+    volumes:
+      - .:/cube/conf
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./uber.sql:/uber.sql
+      - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: foo@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5050:80"
