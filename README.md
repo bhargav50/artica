@@ -20,7 +20,10 @@ This project is built using the following technologies:
 - Build Frontend
   - create visualizations (stacked bar, pie, heatmap)
 
-P.S. Earlier I was trying to research whether I can create heatmap on actual map for a single city and support zoom-in or zoom-out actions. After some research, I found that geo queries are not supported in Cube, hence dropped the idea :(
+P.S.
+
+- Earlier I was trying to research whether I can create heatmap on actual map for a single city and support zoom-in or zoom-out actions. After some research, I found that geo queries are not supported in Cube, hence dropped the idea :(
+- I have tried to maintain as much clean code as possible in time I had for this assignment. Still this is not how I would deliver this artifact if it was for production use. There is still a scope for refactor.
 
 ### How to start Backend
 
